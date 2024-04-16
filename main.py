@@ -76,16 +76,18 @@ def save_xlsx(workbook, filename):
 
 
 def main():
+    print('Update started')
     xml_data = download_xml(xml_link)
-
+    print('Link downloaded')
     workbook = xml_to_xlsx(xml_data)
-
+    print('Data getted')
     sheets.write_to_db(workbook)
-
+    print('Sheet saved')
 
 schedule.every().day.at("11:00").do(main)
 schedule.every().day.at("23:00").do(main)
 
+print('Script started!')
 while True:
     schedule.run_pending()
     time.sleep(60)
